@@ -11,7 +11,7 @@ RUN apt install -y linux-headers-generic
 ENV BASE_URL https://us.download.nvidia.com/tesla
 ENV DRIVER_VERSION 460.73.01
 RUN curl -fSsl -O $BASE_URL/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run
-RUN sh NVIDIA-Linux-x86_64-$DRIVER_VERSION.run -s
+RUN sh NVIDIA-Linux-x86_64-$DRIVER_VERSION.run -s --kernel-source-path=/lib/modules/$(uname -r)
 
 # Installing and running Nvidia Fabric Manager
 RUN apt-get install -y cuda-drivers-fabricmanager-460
