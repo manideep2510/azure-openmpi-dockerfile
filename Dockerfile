@@ -5,16 +5,16 @@ ENV AZUREML_CONDA_ENVIRONMENT_PATH /azureml-envs/torch-env
 RUN apt-get update
 RUN apt install -y build-essential
 RUN apt-get install -y module-init-tools kmod
-RUN echo '********:uname -r:********' && \
-  echo $(uname -r)
-#RUN apt install -y linux-headers-generic
-RUN apt install -y linux-headers-$(uname -r)
+#RUN echo '********:uname -r:********' && \
+#  echo $(uname -r)
+RUN apt install -y linux-headers-generic
+#RUN apt install -y linux-headers-$(uname -r)
 
 # Install Nvidia driver
 ENV BASE_URL https://us.download.nvidia.com/tesla
 ENV DRIVER_VERSION 460.73.01
 RUN curl -fSsl -O $BASE_URL/$DRIVER_VERSION/NVIDIA-Linux-x86_64-$DRIVER_VERSION.run
-RUN sh NVIDIA-Linux-x86_64-$DRIVER_VERSION.run -s --kernel-source-path=/usr/src/linux-headers-$(uname -r)
+RUN sh NVIDIA-Linux-x86_64-$DRIVER_VERSION.run -s --kernel-source-path=/usr/src/linux-headers-4.15.0-147-generic
 
 # Installing and running Nvidia Fabric Manager
 RUN apt-get install -y cuda-drivers-fabricmanager-460
