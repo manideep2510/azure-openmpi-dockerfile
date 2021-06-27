@@ -4,7 +4,7 @@ ENV AZUREML_CONDA_ENVIRONMENT_PATH /azureml-envs/torch-env
 
 RUN apt-get update
 RUN apt install -y build-essential
-RUN apt-get install module-init-tools kmod
+RUN apt-get install -y module-init-tools kmod
 
 # Install Nvidia driver
 ENV BASE_URL https://us.download.nvidia.com/tesla
